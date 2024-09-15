@@ -21,7 +21,7 @@ public class SecurityConfig {
     //todo: use oauth2Login to tell spring we are using it
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests(
+        httpSecurity.authorizeHttpRequests(
                 requests -> requests.requestMatchers("/secure").authenticated()
                         .anyRequest().permitAll())
                 .formLogin(Customizer.withDefaults())
@@ -36,17 +36,20 @@ public class SecurityConfig {
     @Bean
     ClientRegistrationRepository clientRegistrationRepository() {
         ClientRegistration github  = githubClientRegistration();
-        ClientRegistration facebook  = facebookClientRegistration();
-        return new InMemoryClientRegistrationRepository(github, facebook);
+       // ClientRegistration facebook  = facebookClientRegistration();
+        return new InMemoryClientRegistrationRepository(github);
     }
 
+
+    //todo : go to github https://github.com/settings/applications/new to register
+    //nb create the ids and secret to under configs
     private ClientRegistration githubClientRegistration() {
-        return  CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("")
-                .clientSecret("").build();
+        return  CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("Ov23liDpJKvBB2lQqbIg")
+                .clientSecret("cfbc0025ac0b68c604b258ca418220c0590bf1ad").build();
     }
-
-    private ClientRegistration facebookClientRegistration() {
-        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("")
-                .clientSecret("").build();
-    }
+    //todo: do the same for facebook go to developers page , remember to allow email scope otherwise it wont work
+//    private ClientRegistration facebookClientRegistration() {
+//        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("")
+//                .clientSecret("").build();
+//    }
 }
