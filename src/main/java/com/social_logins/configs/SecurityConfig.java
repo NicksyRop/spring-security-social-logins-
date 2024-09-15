@@ -29,24 +29,26 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    //todo: cleaner way is to add the creds to application props, spring will create the configuration
+
 
     //todo: tell spring the type of auth server we are using i.e our own or social logins
     //spring has enum class that can allow social logins i,e CommonOAuth2Provider.class
     // that returns ClientRegistration
-    @Bean
-    ClientRegistrationRepository clientRegistrationRepository() {
-        ClientRegistration github  = githubClientRegistration();
-       // ClientRegistration facebook  = facebookClientRegistration();
-        return new InMemoryClientRegistrationRepository(github);
-    }
+//    @Bean
+//    ClientRegistrationRepository clientRegistrationRepository() {
+//        ClientRegistration github  = githubClientRegistration();
+//       // ClientRegistration facebook  = facebookClientRegistration();
+//        return new InMemoryClientRegistrationRepository(github);
+//    }
 
 
     //todo : go to github https://github.com/settings/applications/new to register
     //nb create the ids and secret to under configs
-    private ClientRegistration githubClientRegistration() {
-        return  CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("Ov23liDpJKvBB2lQqbIg")
-                .clientSecret("cfbc0025ac0b68c604b258ca418220c0590bf1ad").build();
-    }
+//    private ClientRegistration githubClientRegistration() {
+//        return  CommonOAuth2Provider.GITHUB.getBuilder("github").clientId("Ov23liDpJKvBB2lQqbIg")
+//                .clientSecret("cfbc0025ac0b68c604b258ca418220c0590bf1ad").build();
+//    }
     //todo: do the same for facebook go to developers page , remember to allow email scope otherwise it wont work
 //    private ClientRegistration facebookClientRegistration() {
 //        return CommonOAuth2Provider.FACEBOOK.getBuilder("facebook").clientId("")

@@ -3,3 +3,12 @@ spring:
     user:
       name: nicksy
       password: 12345
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liDpJKvBB2lQqbIg
+            client-secret: cfbc0025ac0b68c604b258ca418220c0590bf1ad
+
+
+
